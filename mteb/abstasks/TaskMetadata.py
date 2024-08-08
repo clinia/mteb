@@ -48,6 +48,7 @@ TASK_DOMAIN = Literal[
     "Fiction",
     "Government",
     "Legal",
+    "CliniaMedical",
     "Medical",
     "News",
     "Non-fiction",
