@@ -204,6 +204,18 @@ MTEB_RETRIEVAL_LAW = Benchmark(
     citation=None,
 )
 
+MTEB_RETRIEVAL_HEALTH = Benchmark(
+    name="HeMTEB",
+    tasks=[
+        "HeMtebDentistryAndOralHealth",
+        "HeMtebOtorhinolaryngology",
+        "HeMtebPlasticSurgery",
+    ],
+    description="Health benchmarks from MTEB",
+    reference="https://huggingface.co/collections/clinia/hemteb-66ba862805553c5186ad6c4e",
+    citation=None,
+)
+
 MTEB_MINERS_BITEXT_MINING = Benchmark(
     name="MINERSBitextMining",
     tasks=[
