@@ -21,7 +21,7 @@ class HeMtebPlasticSurgeryRetrieval(AbsTaskRetrieval):
         eval_langs=["eng-Latn"],
         main_score="ndcg_at_10",
         date=None,
-        domains=["CliniaMedical"],
+        domains=["CliniaHealth"],
         task_subtypes=None,
         license=None,
         annotations_creators="expert-annotated",
