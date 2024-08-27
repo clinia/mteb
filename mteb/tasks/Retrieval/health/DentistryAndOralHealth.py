@@ -8,7 +8,7 @@ from ....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 class HeMtebDentistryAndOralRetrieval(AbsTaskRetrieval):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/health-information-retrieval-dentistry-and-oral-health-en-bm25",
+            "path": "clinia/filtered-health-information-retrieval-dentistry-and-oral-health-en-bm25",
             "revision": "282723268448f1878452c8c2a335dd22d31d8f78",
         },
         name="HeMtebDentistryAndOralHealth",
