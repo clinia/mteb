@@ -44,7 +44,7 @@ def download_of_results(
         cache_directory.mkdir(parents=True)
 
     # if "results" folder already exists update it
-    results_directory = cache_directory / "results"
+    results_directory = cache_directory / results_repo.split("/")[-1]
     if results_directory.exists():
         if download_latest:
             logger.info(
