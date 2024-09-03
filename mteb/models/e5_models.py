@@ -112,13 +112,13 @@ e5_mult_small = ModelMeta(
     loader=partial(
         sentence_transformers_loader,
         model_name="intfloat/multilingual-e5-small",
-        revision="e4ce9877abf3edfe10b0d82785e83bdcb973e22e",
+        revision="fd1525a9fd15316a2d503bf26ab031a61d056e98",
         prompts={"query": "query: ", "passage": "passage: "},
     ),
     name="intfloat/multilingual-e5-small",
     languages=XLMR_LANGUAGES,
     open_source=True,
-    revision="e4ce9877abf3edfe10b0d82785e83bdcb973e22e",
+    revision="fd1525a9fd15316a2d503bf26ab031a61d056e98",
     release_date=E5_PAPER_RELEASE_DATE,
 )
 
@@ -140,13 +140,13 @@ e5_mult_large = ModelMeta(
     loader=partial(
         sentence_transformers_loader,
         model_name="intfloat/multilingual-e5-large",
-        revision="4dc6d853a804b9c8886ede6dda8a073b7dc08a81",
+        revision="ab10c1a7f42e74530fe7ae5be82e6d4f11a719eb",
         prompts={"query": "query: ", "passage": "passage: "},
     ),
     name="intfloat/multilingual-e5-large",
     languages=XLMR_LANGUAGES,
     open_source=True,
-    revision="4dc6d853a804b9c8886ede6dda8a073b7dc08a81",
+    revision="ab10c1a7f42e74530fe7ae5be82e6d4f11a719eb",
     release_date=E5_PAPER_RELEASE_DATE,
 )
 
