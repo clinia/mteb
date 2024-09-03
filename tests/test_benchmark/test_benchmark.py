@@ -12,7 +12,6 @@ import mteb
 from mteb.benchmarks import Benchmark
 
 from .mock_models import (
-    MockE5Wrapper,
     MockNumpyEncoder,
     MockTorchbf16Encoder,
     MockTorchEncoder,
@@ -40,7 +39,6 @@ def test_mulitple_mteb_tasks(
         MockNumpyEncoder(),
         MockTorchEncoder(),
         MockTorchbf16Encoder(),
-        MockE5Wrapper(),
     ],
 )
 def test_benchmark_encoders_on_task(task: str | mteb.AbsTask, model: mteb.Encoder):
