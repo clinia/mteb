@@ -95,6 +95,7 @@ from .fra.SyntecRetrieval import *
 from .health.DentistryAndOralHealth import *
 from .health.OtorhinolaryngologyRetrieval import *
 from .health.PlasticSurgeryRetrieval import *
+from .health.Pulmonology import *
 from .hun.HunSum2 import *
 from .jpn.JaGovFaqsRetrieval import *
 from .jpn.JaQuADRetrieval import *
