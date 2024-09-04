@@ -93,8 +93,13 @@ from .fra.BSARDRetrieval import *
 from .fra.FQuADRetrieval import *
 from .fra.SyntecRetrieval import *
 from .health.DentistryAndOralHealth import *
+from .health.Dermatology import *
+from .health.Gastroenterology import *
+from .health.Genetics import *
+from .health.OrthopedicSurgery import *
 from .health.OtorhinolaryngologyRetrieval import *
 from .health.PlasticSurgeryRetrieval import *
+from .health.PsychiatryAndPsychology import *
 from .health.Pulmonology import *
 from .hun.HunSum2 import *
 from .jpn.JaGovFaqsRetrieval import *
