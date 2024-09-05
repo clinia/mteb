@@ -9,26 +9,30 @@ from mteb.abstasks.TaskMetadata import TaskMetadata
 from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 from .....abstasks.MultilingualTask import MultilingualTask
 
-_LANGUAGES = {"eng-Latn": "en", "spa-Latn": "es", "fra-Latn": "fr"}
+_LANGUAGES = {
+    "en-en": ["eng-Latn", "eng-Latn"],
+    "es-en": ["spa-Latn", "eng-Latn"],
+    "fr-en": ["fra-Latn", "eng-Latn"],
+}
 
 
-class HeMtebPulmonologyRetrieval(AbsTaskRetrieval, MultilingualTask):
+class HeMtebPyschiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-pulmonology-bm25",
+            "path": "clinia/hemteb-psychiatry-and-psychology-bm25",
             "revision": "",
         },
-        name="HeMtebPulmonology",
+        name="HeMtebPsychiatryAndPsychology",
         description="",
         type="Retrieval",
         modalities=["text"],
         category="s2p",
         reference=None,
         eval_splits=["test"],
-        eval_langs={"en": ["eng-Latn"], "es": ["spa-Latn"], "fr": ["fra-Latn"]},
+        eval_langs=_LANGUAGES,
         main_score="ndcg_at_10",
         date=None,
-        domains=["Medical"],
+        domains=["CLiniaHealth"],
         task_subtypes=None,
         license=None,
         annotations_creators="expert-annotated",
@@ -117,12 +121,12 @@ class HeMtebPulmonologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         for language in languages:
             for split in eval_splits:
                 self.corpus[language][split] = self._load_corpus(
-                    language="en", cache_dir=cache_dir
+                    language=language, cache_dir=cache_dir
                 )
                 self.queries[language][split] = self._load_queries(
-                    language="en", cache_dir=cache_dir
+                    language=language, cache_dir=cache_dir
                 )
                 self.relevant_docs[language][split] = self._load_qrels(
-                    language="en", split=split, cache_dir=cache_dir
+                    language=language, split=split, cache_dir=cache_dir
                 )
         self.data_loaded = True
