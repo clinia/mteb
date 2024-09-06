@@ -20,7 +20,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-genetics-bm25",
-            "revision": "eb62be7f30b3ec0060af4c3aca2e6bc0f6177859",
+            "revision": "c5d67c2eaedb5c41a168ff334f408366bb9616eb",
         },
         name="HeMtebGenetics",
         description="",
@@ -46,7 +46,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask):
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-corpus",
-            revision=self.metadata_dict["dataset"]["revision"],
+            # revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         corpus_ds = next(iter(corpus_ds.values()))
@@ -68,7 +68,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask):
         queries_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-queries",
-            revision=self.metadata_dict["dataset"]["revision"],
+            # revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         queries_ds = next(iter(queries_ds.values()))
@@ -84,7 +84,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask):
         qrels_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-qrels",
-            revision=self.metadata_dict["dataset"]["revision"],
+            # revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )[split]
         features = Features(
