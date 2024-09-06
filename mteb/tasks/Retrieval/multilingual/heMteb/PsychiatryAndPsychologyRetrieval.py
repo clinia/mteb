@@ -19,8 +19,8 @@ _LANGUAGES = {
 class HeMtebPyschiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-psychiatry-and-psychology-bm25",
-            "revision": "",
+            "path": "clinia/hemteb-pyschiatry-and-pyschology-bm25",
+            "revision": "bf841b1e8a5932fbe5429f25e50dadd21b79252b",
         },
         name="HeMtebPsychiatryAndPsychology",
         description="",

@@ -20,7 +20,7 @@ class HeMtebDentistryAndOralHealthRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-dentistry-and-oral-health-bm25",
-            "revision": "f9270cdc8db6c1bf56c5568e0ab6107c2f5464ce",
+            "revision": "d3c7c1f1f3f3f84e87af391584003568d1bc75e2",
         },
         name="HeMtebDentistryAndOralHealth",
         description="",

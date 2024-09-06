@@ -20,7 +20,7 @@ class HeMtebNeuroscienceAndNeurologyRetrieval(AbsTaskRetrieval, MultilingualTask
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-neuroscience-and-neurology-bm25",
-            "revision": "",
+            "revision": "94e3041db6806bb4766e5f652cb97dff15252cc5",
         },
         name="HeMtebNeuroscienceAndNeurology",
         description="",

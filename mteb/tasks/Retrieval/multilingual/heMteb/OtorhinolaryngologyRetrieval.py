@@ -20,7 +20,7 @@ class HeMtebOtorhinolaryngologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-otorhinolaryngology-bm25",
-            "revision": "",
+            "revision": "888755176c7cd372f2c41decb851387e6ad9407c",
         },
         name="HeMtebOtorhinolaryngology",
         description="",

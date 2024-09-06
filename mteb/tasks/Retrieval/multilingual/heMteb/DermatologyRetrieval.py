@@ -23,7 +23,7 @@ class HeMtebDermatologyRetrieval(AbsTaskRetrieval, MultilingualTask):
             "revision": "",
         },
         name="HeMtebDermatology",
-        description="",
+        description="efe1761c34a1a8b122eefc2885bbdb2a203c03f4",
         type="Retrieval",
         modalities=["text"],
         category="s2p",
