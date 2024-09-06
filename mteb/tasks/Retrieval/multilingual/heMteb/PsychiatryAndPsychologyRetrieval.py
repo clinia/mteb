@@ -32,7 +32,7 @@ class HeMtebPyschiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask)
         eval_langs=_LANGUAGES,
         main_score="ndcg_at_10",
         date=None,
-        domains=["CLiniaHealth"],
+        domains=["CliniaHealth"],
         task_subtypes=None,
         license=None,
         annotations_creators="expert-annotated",
