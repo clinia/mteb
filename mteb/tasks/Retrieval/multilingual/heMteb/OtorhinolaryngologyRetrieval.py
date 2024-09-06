@@ -20,7 +20,7 @@ class HeMtebOtorhinolaryngologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-otorhinolaryngology-bm25",
-            "revision": "841c63d9b2c9b33335569ec33d3184038fc407fa",
+            "revision": "3e66992c8ca0d61849c7428cdb42c1ffd7162742",
         },
         name="HeMtebOtorhinolaryngology",
         description="",
@@ -46,7 +46,7 @@ class HeMtebOtorhinolaryngologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-corpus",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         corpus_ds = next(iter(corpus_ds.values()))
@@ -68,7 +68,7 @@ class HeMtebOtorhinolaryngologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         queries_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-queries",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         queries_ds = next(iter(queries_ds.values()))
@@ -84,7 +84,7 @@ class HeMtebOtorhinolaryngologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         qrels_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-qrels",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )[split]
         features = Features(
