@@ -20,7 +20,7 @@ class HeMtebDermatologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-dermatology-bm25",
-            "revision": "",
+            "revision": "efe1761c34a1a8b122eefc2885bbdb2a203c03f4",
         },
         name="HeMtebDermatology",
         description="efe1761c34a1a8b122eefc2885bbdb2a203c03f4",

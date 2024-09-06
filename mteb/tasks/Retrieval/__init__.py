@@ -108,8 +108,10 @@ from .multilingual.heMteb.DermatologyRetrieval import *
 from .multilingual.heMteb.GastroenterologyRetrieval import *
 from .multilingual.heMteb.GeneticsRetrieval import *
 from .multilingual.heMteb.NeuroscienceAndNeurologyRetrieval import *
+from .multilingual.heMteb.OrthopedicSurgeryRetrieval import *
 from .multilingual.heMteb.OtorhinolaryngologyRetrieval import *
 from .multilingual.heMteb.PlasticSurgeryRetrieval import *
+from .multilingual.heMteb.PsychiatryAndPsychologyRetrieval import *
 from .multilingual.heMteb.PulmonologyRetrieval import *
 from .multilingual.IndicQARetrieval import *
 from .multilingual.MintakaRetrieval import *
