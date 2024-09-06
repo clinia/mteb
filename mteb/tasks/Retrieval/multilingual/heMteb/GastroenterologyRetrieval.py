@@ -46,7 +46,7 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-corpus",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         corpus_ds = next(iter(corpus_ds.values()))
@@ -68,7 +68,7 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         queries_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-queries",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
         queries_ds = next(iter(queries_ds.values()))
@@ -84,7 +84,7 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask):
         qrels_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-qrels",
-            # revision=self.metadata_dict["dataset"]["revision"],
+            revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )[split]
         features = Features(
