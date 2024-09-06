@@ -20,7 +20,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-genetics-bm25",
-            "revision": "c5d67c2eaedb5c41a168ff334f408366bb9616eb",
+            "revision": "eb62be7f30b3ec0060af4c3aca2e6bc0f6177859",
         },
         name="HeMtebGenetics",
         description="",
