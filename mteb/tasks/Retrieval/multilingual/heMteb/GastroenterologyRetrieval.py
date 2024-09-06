@@ -20,7 +20,7 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-gastroenterology-bm25",
-            "revision": "9a772ba70b6ea42a5df2ab6ab6980355c48dd29c",
+            "revision": "3307785b6766943539bbb388bdedcbd64400dc91",
         },
         name="HeMtebGastroenterology",
         description="",

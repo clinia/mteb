@@ -20,7 +20,7 @@ class HeMtebOrthopedicSurgeryRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-orthopedic-surgery-bm25",
-            "revision": "ebdd9b6f6388e18bc3d56306d9d03e6a2b296203",
+            "revision": "f0848d98c2d5784d1da7299e92ca6f4211a8bf91",
         },
         name="HeMtebOrthopedicSurgery",
         description="",

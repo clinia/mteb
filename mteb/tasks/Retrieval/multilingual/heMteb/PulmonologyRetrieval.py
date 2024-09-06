@@ -20,7 +20,7 @@ class HeMtebPulmonologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-pulmonology-bm25",
-            "revision": "9e7831738e6460240308062288832e624e6bbf5e",
+            "revision": "94916e1405e4fca7fbecd986638cb84f4cfa597b",
         },
         name="HeMtebPulmonology",
         description="",

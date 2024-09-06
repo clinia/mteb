@@ -20,7 +20,7 @@ class HeMtebPyschiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask)
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-pyschiatry-and-pyschology-bm25",
-            "revision": "bf841b1e8a5932fbe5429f25e50dadd21b79252b",
+            "revision": "29c18d5c598118f3fb9a942ea072127e14cadceb",
         },
         name="HeMtebPsychiatryAndPsychology",
         description="",
