@@ -11,8 +11,8 @@ from .....abstasks.MultilingualTask import MultilingualTask
 
 _LANGUAGES = {
     "en-en": ["eng-Latn", "eng-Latn"],
-    "es-en": ["spa-Latn", "eng-Latn"],
-    "fr-en": ["fra-Latn", "eng-Latn"],
+    # "es-en": ["spa-Latn", "eng-Latn"],
+    # "fr-en": ["fra-Latn", "eng-Latn"],
 }
 
 
@@ -21,8 +21,8 @@ class HeMtebDentistryAndOralHealthBinaryRelevanceJudgmentRetrieval(
 ):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-dentistry-and-oral-health-bm25",
-            "revision": "9a456f6e67a97bd3202b26b3cad302cc4349b4fe",
+            "path": "clinia/hemteb-dentistry-and-oral-health-bm25-binary-relevance-judgments",
+            "revision": "9a325f00c5188bd2e846dc41b2f12f2323861837",
         },
         name="HeMtebDentistryAndOralHealthBinaryRelevanceJudgment",
         description="",
