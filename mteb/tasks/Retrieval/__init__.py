@@ -103,6 +103,7 @@ from .kor.KoStrategyQA import *
 from .multilingual.BelebeleRetrieval import *
 from .multilingual.CrossLingualSemanticDiscriminationWMT19 import *
 from .multilingual.CrossLingualSemanticDiscriminationWMT21 import *
+from .multilingual.heMteb.DentistryAndOralHealthBinaryRelevanceJudgmentRetrieval import *
 from .multilingual.heMteb.DentistryAndOralHealthRetrieval import *
 from .multilingual.heMteb.DermatologyRetrieval import *
 from .multilingual.heMteb.GastroenterologyRetrieval import *
