@@ -22,7 +22,7 @@ class HeMtebDentistryAndOralHealthBinaryRelevanceJudgmentRetrieval(
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-dentistry-and-oral-health-bm25-binary-relevance-judgments",
-            "revision": "9a325f00c5188bd2e846dc41b2f12f2323861837",
+            "revision": "5284cd5c5481d823d77965f13db94ee15327788e",
         },
         name="HeMtebDentistryAndOralHealthBinaryRelevanceJudgment",
         description="",
