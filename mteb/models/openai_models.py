@@ -68,9 +68,19 @@ text_embedding_3_small = ModelMeta(
     revision="1",
     release_date="2024-01-25",
     languages=None,  # supported languages not specified
-    loader=partial(OpenAIWrapper, model_name="text-embedding-3-small"),
+    loader=partial(OpenAIWrapper, model_name="text-embedding-3-small", embed_dim=1536),
     max_tokens=8191,
     embed_dim=1536,
+    open_source=False,
+)
+text_embedding_3_small_768 = ModelMeta(
+    name="text-embedding-3-small-768",
+    revision="1",
+    release_date="2024-01-25",
+    languages=None,  # supported languages not specified
+    loader=partial(OpenAIWrapper, model_name="text-embedding-3-small", embed_dim=768),
+    max_tokens=8191,
+    embed_dim=768,
     open_source=False,
 )
 text_embedding_3_large = ModelMeta(
@@ -78,9 +88,19 @@ text_embedding_3_large = ModelMeta(
     revision="1",
     release_date="2024-01-25",
     languages=None,  # supported languages not specified
-    loader=partial(OpenAIWrapper, model_name="text-embedding-3-large"),
+    loader=partial(OpenAIWrapper, model_name="text-embedding-3-large", embed_dim=3072),
     max_tokens=8191,
     embed_dim=3072,
+    open_source=False,
+)
+text_embedding_3_large_768 = ModelMeta(
+    name="text-embedding-3-large-768",
+    revision="1",
+    release_date="2024-01-25",
+    languages=None,  # supported languages not specified
+    loader=partial(OpenAIWrapper, model_name="text-embedding-3-large", embed_dim=768),
+    max_tokens=8191,
+    embed_dim=768,
     open_source=False,
 )
 text_embedding_ada_002 = ModelMeta(
