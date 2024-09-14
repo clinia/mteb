@@ -16,7 +16,7 @@ _LANGUAGES = {
 }
 
 
-class HeMtebPyschiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask):
+class HeMtebPsychiatryAndPsychologyRetrieval(AbsTaskRetrieval, MultilingualTask):
     metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-pyschiatry-and-pyschology-bm25",
