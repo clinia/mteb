@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
 from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
@@ -15,7 +14,7 @@ _LANGUAGES = {
 
 
 class HeMtebPlasticSurgeryRetrieval(AbsTaskRetrieval, HeMtebTask, MultilingualTask):
-   metadata = TaskMetadata(
+    metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-plastic-surgery-bm25",
             "revision": "a96b70afa071d7e4913ea94d0b62a518b128f963",

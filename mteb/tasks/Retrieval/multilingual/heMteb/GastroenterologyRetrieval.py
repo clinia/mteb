@@ -6,7 +6,6 @@ from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 from .....abstasks.MultilingualTask import MultilingualTask
 from . import HeMtebTask
 
-
 _LANGUAGES = {
     "en-en": ["eng-Latn", "eng-Latn"],
     "es-en": ["spa-Latn", "eng-Latn"],

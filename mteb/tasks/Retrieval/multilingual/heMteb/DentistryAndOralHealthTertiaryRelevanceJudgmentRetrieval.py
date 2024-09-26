@@ -1,13 +1,10 @@
 from __future__ import annotations
 
-
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
 from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 from .....abstasks.MultilingualTask import MultilingualTask
 from . import HeMtebTask
-
-
 
 _LANGUAGES = {
     "en-en": ["eng-Latn", "eng-Latn"],
