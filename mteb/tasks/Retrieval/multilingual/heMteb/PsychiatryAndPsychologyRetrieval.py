@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
 from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
@@ -16,7 +17,7 @@ _LANGUAGES = {
 class HeMtebPyschiatryAndPsychologyRetrieval(
     AbsTaskRetrieval, HeMtebTask, MultilingualTask
 ):
-    metadata = TaskMetadata(
+   metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-pyschiatry-and-pyschology-bm25",
             "revision": "29c18d5c598118f3fb9a942ea072127e14cadceb",

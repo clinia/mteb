@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
 from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 from .....abstasks.MultilingualTask import MultilingualTask
 from . import HeMtebTask
+
 
 _LANGUAGES = {
     "en-en": ["eng-Latn", "eng-Latn"],
@@ -16,7 +18,7 @@ _LANGUAGES = {
 class HeMtebNeuroscienceAndNeurologyRetrieval(
     AbsTaskRetrieval, HeMtebTask, MultilingualTask
 ):
-    metadata = TaskMetadata(
+   metadata = TaskMetadata(
         dataset={
             "path": "clinia/hemteb-neuroscience-and-neurology-bm25",
             "revision": "bcbff5132c7dd6a37f6ad389bea5a1dce017d649",

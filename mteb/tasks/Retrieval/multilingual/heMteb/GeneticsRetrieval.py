@@ -41,3 +41,4 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
 
     def load_data(self, **kwargs):
         HeMtebTask.load_data(self, **kwargs)
+       )
