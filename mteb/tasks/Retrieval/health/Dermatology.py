@@ -2,23 +2,14 @@ from __future__ import annotations
 
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
-from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
-from .....abstasks.MultilingualTask import MultilingualTask
-from . import HeMtebTask
+from ....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
 
-_LANGUAGES = {
-    "en-en": ["eng-Latn", "eng-Latn"],
-    "es-en": ["spa-Latn", "eng-Latn"],
-    "fr-en": ["fra-Latn", "eng-Latn"],
-}
-
-
-class HeMtebDermatologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
+class HeMtebDermatologyRetrieval(AbsTaskRetrieval):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-dermatology-bm25",
-            "revision": "9851bd1b78af420a14b8a70a06f706cd7afb8258",
+            "path": "clinia/health-information-retrieval-dermatology-en-bm25",
+            "revision": "c0bbb31185a46b980e5092029772dc0fefaffb37",
         },
         name="HeMtebDermatology",
         description="",
@@ -27,7 +18,7 @@ class HeMtebDermatologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask)
         category="s2p",
         reference=None,
         eval_splits=["test"],
-        eval_langs=_LANGUAGES,
+        eval_langs=["eng-Latn"],
         main_score="ndcg_at_10",
         date=None,
         domains=["CliniaHealth"],
@@ -39,6 +30,3 @@ class HeMtebDermatologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask)
         bibtex_citation=None,
         descriptive_stats={},
     )
-
-    def load_data(self, **kwargs):
-        HeMtebTask.load_data(self, **kwargs)

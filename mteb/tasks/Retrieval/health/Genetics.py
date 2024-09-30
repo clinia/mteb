@@ -2,22 +2,14 @@ from __future__ import annotations
 
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
-from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
-from .....abstasks.MultilingualTask import MultilingualTask
-from . import HeMtebTask
-
-_LANGUAGES = {
-    "en-en": ["eng-Latn", "eng-Latn"],
-    "es-en": ["spa-Latn", "eng-Latn"],
-    "fr-en": ["fra-Latn", "eng-Latn"],
-}
+from ....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
 
-class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
+class HeMtebGeneticsRetrieval(AbsTaskRetrieval):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-genetics-bm25",
-            "revision": "eb62be7f30b3ec0060af4c3aca2e6bc0f6177859",
+            "path": "clinia/health-information-retrieval-genetics-en-bm25",
+            "revision": "a2944ab333ba055f4a70e31823fc0bddcebe378e",
         },
         name="HeMtebGenetics",
         description="",
@@ -26,7 +18,7 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
         category="s2p",
         reference=None,
         eval_splits=["test"],
-        eval_langs=_LANGUAGES,
+        eval_langs=["eng-Latn"],
         main_score="ndcg_at_10",
         date=None,
         domains=["CliniaHealth"],
@@ -38,6 +30,3 @@ class HeMtebGeneticsRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
         bibtex_citation=None,
         descriptive_stats={},
     )
-
-    def load_data(self, **kwargs):
-        HeMtebTask.load_data(self, **kwargs)

@@ -2,22 +2,14 @@ from __future__ import annotations
 
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
-from .....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
-from .....abstasks.MultilingualTask import MultilingualTask
-from . import HeMtebTask
-
-_LANGUAGES = {
-    "en-en": ["eng-Latn", "eng-Latn"],
-    "es-en": ["spa-Latn", "eng-Latn"],
-    "fr-en": ["fra-Latn", "eng-Latn"],
-}
+from ....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
 
-class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMtebTask):
+class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-gastroenterology-bm25",
-            "revision": "3307785b6766943539bbb388bdedcbd64400dc91",
+            "path": "clinia/health-information-retrieval-gastroenterology-en-bm25",
+            "revision": "cb7b759d62d0440aa8f295f5151f8a1b1bf5a70a",
         },
         name="HeMtebGastroenterology",
         description="",
@@ -26,7 +18,7 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMteb
         category="s2p",
         reference=None,
         eval_splits=["test"],
-        eval_langs=_LANGUAGES,
+        eval_langs=["eng-Latn"],
         main_score="ndcg_at_10",
         date=None,
         domains=["CliniaHealth"],
@@ -38,6 +30,3 @@ class HeMtebGastroenterologyRetrieval(AbsTaskRetrieval, MultilingualTask, HeMteb
         bibtex_citation=None,
         descriptive_stats={},
     )
-
-    def load_data(self, **kwargs):
-        HeMtebTask.load_data(self, **kwargs)
