@@ -104,6 +104,16 @@ from .kor.KoStrategyQA import *
 from .multilingual.BelebeleRetrieval import *
 from .multilingual.CrossLingualSemanticDiscriminationWMT19 import *
 from .multilingual.CrossLingualSemanticDiscriminationWMT21 import *
+from .multilingual.heMteb.DentistryAndOralHealthRetrieval import *
+from .multilingual.heMteb.DermatologyRetrieval import *
+from .multilingual.heMteb.GastroenterologyRetrieval import *
+from .multilingual.heMteb.GeneticsRetrieval import *
+from .multilingual.heMteb.NeuroscienceAndNeurologyRetrieval import *
+from .multilingual.heMteb.OrthopedicSurgeryRetrieval import *
+from .multilingual.heMteb.OtorhinolaryngologyRetrieval import *
+from .multilingual.heMteb.PlasticSurgeryRetrieval import *
+from .multilingual.heMteb.PsychiatryAndPsychologyRetrieval import *
+from .multilingual.heMteb.PulmonologyRetrieval import *
 from .multilingual.IndicQARetrieval import *
 from .multilingual.MintakaRetrieval import *
 from .multilingual.MIRACLRetrieval import *
