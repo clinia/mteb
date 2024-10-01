@@ -92,7 +92,9 @@ class AbsTaskSpeedTask(AbsTask):
         encode_kwargs: dict[str, Any] = {},
         **kwargs,
     ) -> ScoresDict:
-        model.encode(["encode this"], device=self.device)  # ensure model is loaded
+        model.encode(
+            ["encode this"], device=self.device, **encode_kwargs
+        )  # ensure model is loaded
 
         timings = []
         for _ in range(self.num_loops):
