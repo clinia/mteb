@@ -16,6 +16,7 @@ from mteb.abstasks.AbsTaskMultilabelClassification import (
 from mteb.abstasks.AbsTaskPairClassification import AbsTaskPairClassification
 from mteb.abstasks.AbsTaskReranking import AbsTaskReranking
 from mteb.abstasks.AbsTaskRetrieval import AbsTaskRetrieval
+from mteb.abstasks.AbsTaskSpeedTask import AbsTaskSpeedTask
 from mteb.abstasks.AbsTaskSTS import AbsTaskSTS
 from mteb.abstasks.AbsTaskSummarization import AbsTaskSummarization
 from mteb.abstasks.TaskMetadata import TaskMetadata
@@ -45,6 +46,24 @@ multilingual_eval_langs = {
     "eng": ["eng-Latn"],
     "fra": ["fra-Latn"],
 }
+
+
+class MockSpeedTask(AbsTaskSpeedTask):
+    metadata = TaskMetadata(
+        type="Speed",
+        name="MockSpeedTask",
+        main_score="avg_words_per_sec",
+        descriptive_stats={
+            "test": None,
+        },
+        **general_args,  # type: ignore
+    )
+
+    def load_data(self, **kwargs):
+        texts = ["This is a test sentence", "This is another test sentence"]
+
+        self.dataset = {"test": {"text": texts}}
+        self.data_loaded = True
 
 
 class MockClassificationTask(AbsTaskClassification):
