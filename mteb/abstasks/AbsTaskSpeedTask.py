@@ -4,6 +4,7 @@ import logging
 import platform
 import time
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -37,10 +38,15 @@ class AbsTaskSpeedTask(AbsTask):
         self.dataset = {"test": {"text": text.split("\n\n")}}
         self.data_loaded = True
 
-    def _get_time_taken(self, model: Encoder, data_split) -> float:
+    def _get_time_taken(
+        self, model: Encoder, data_split, encode_kwargs: dict[str, Any] = {}
+    ) -> float:
         start = time.time()
         model.encode(
-            data_split["text"], device=self.device, task_name=self.metadata.name
+            sentences=data_split["text"],
+            device=self.device,
+            task_name=self.metadata.name,
+            **encode_kwargs,
         )
         time_taken = time.time() - start
         return time_taken
@@ -84,14 +90,21 @@ class AbsTaskSpeedTask(AbsTask):
             info["gpu_info"] = list_gpus
         return info
 
-    def _evaluate_subset(self, model: Encoder, data_split, **kwargs) -> ScoresDict:
+    def _evaluate_subset(
+        self, model: Encoder, data_split, encode_kwargs: dict[str, Any] = {}, **kwargs
+    ) -> ScoresDict:
         model.encode(
-            ["encode this"], device=self.device, task_name=self.metadata.name
+            sentences=["encode this"],
+            device=self.device,
+            task_name=self.metadata.name,
+            **encode_kwargs,
         )  # ensure model is loaded
 
         timings = []
         for _ in range(self.num_loops):
-            time_taken = self._get_time_taken(model, data_split)
+            time_taken = self._get_time_taken(
+                model, data_split, encode_kwargs=encode_kwargs
+            )
             timings.append(time_taken)
 
         time_mean = np.mean(timings)
