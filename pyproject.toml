@@ -85,7 +85,7 @@ exclude_also = [
 exclude = ["tests", "results"]
 
 [tool.setuptools.package-data]
-"*" = ["*.json"]
+"*" = ["*.json", "*.txt"]
 
 [tool.ruff]
 
