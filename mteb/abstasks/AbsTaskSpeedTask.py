@@ -4,12 +4,14 @@ import logging
 import platform
 import time
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
 from mteb.encoder_interface import Encoder, EncoderWithQueryCorpusEncode
 from mteb.load_results.mteb_results import ScoresDict
 
+from ..evaluation.evaluators.model_encode import model_encode
 from .AbsTask import AbsTask
 
 logger = logging.getLogger(__name__)
@@ -37,9 +39,16 @@ class AbsTaskSpeedTask(AbsTask):
         self.dataset = {"test": {"text": text.split("\n\n")}}
         self.data_loaded = True
 
-    def _get_time_taken(self, model: Encoder, data_split) -> float:
+    def _get_time_taken(
+        self, model: Encoder, data_split, encode_kwargs: dict[str, Any] = {}
+    ) -> float:
         start = time.time()
-        model.encode(data_split["text"], device=self.device)
+        model_encode(
+            sentences=data_split["text"],
+            model=model,
+            task_name=self.metadata.name,
+            **encode_kwargs,
+        )
         time_taken = time.time() - start
         return time_taken
 
@@ -83,13 +92,24 @@ class AbsTaskSpeedTask(AbsTask):
         return info
 
     def _evaluate_subset(
-        self, model: EncoderWithQueryCorpusEncode | Encoder, data_split, **kwargs
+        self,
+        model: EncoderWithQueryCorpusEncode | Encoder,
+        data_split,
+        encode_kwargs: dict[str, Any] = {},
+        **kwargs,
     ) -> ScoresDict:
-        model.encode(["encode this"], device=self.device)  # ensure model is loaded
+        model_encode(
+            sentences=["encode this"],
+            model=model,
+            task_name=self.metadata.name,
+            **encode_kwargs,
+        )  # ensure model is loaded
 
         timings = []
         for _ in range(self.num_loops):
-            time_taken = self._get_time_taken(model, data_split)
+            time_taken = self._get_time_taken(
+                model, data_split, encode_kwargs=encode_kwargs
+            )
             timings.append(time_taken)
 
         time_mean = np.mean(timings)
