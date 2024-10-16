@@ -240,21 +240,12 @@ MTEB_RETRIEVAL_LAW = Benchmark(
     citation=None,
 )
 
-MTEB_RETRIEVAL_HEALTH = Benchmark(
-    name="HeMTEB",
+MTEB_RETRIEVAL_MEDICAL = Benchmark(
+    name="MTEB (Medical)",
     tasks=[
-        "HeMtebDentistryAndOralHealth",
-        "HeMtebDermatology",
-        "HeMtebGastroenterology",
-        "HeMtebGenetics",
-        "HeMtebNeuroscienceAndNeurology",
-        "HeMtebOrthopedicSurgery",
-        "HeMtebOtorhinolaryngology",
-        "HeMtebPlasticSurgery",
-        "HeMtebPsychiatryAndPsychology",
-        "HeMtebPulmonology",
+        "HeMtebRetrieval",
     ],
-    description="Health benchmarks from MTEB",
+    description="Medical benchmarks from MTEB",
     reference="https://huggingface.co/collections/clinia/hemteb-66ba862805553c5186ad6c4e",
     citation=None,
 )

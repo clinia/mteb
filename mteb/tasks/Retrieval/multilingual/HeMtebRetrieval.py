@@ -1,15 +1,46 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from enum import Enum
 
 from datasets import Features, Value, load_dataset
 
+from mteb.abstasks.TaskMetadata import TaskMetadata
 
-class HeMtebTask:
-    def _load_corpus(self, language: str, cache_dir: str | None = None):
+from ....abstasks.AbsTaskRetrieval import AbsTaskRetrieval
+from ....abstasks.MultilingualTask import MultilingualTask
+
+_LANGUAGES = {
+    "en-en": ["eng-Latn", "eng-Latn"],
+    "es-en": ["spa-Latn", "eng-Latn"],
+    "fr-en": ["fra-Latn", "eng-Latn"],
+}
+
+
+class HeMtebSplits(str, Enum):
+    all = "all"
+    dentistry = "DentistryAndOralHealth"
+    dermatology = "Dermatology"
+    gastroenterology = "Gastroenterology"
+    genetics = "Genetics"
+    neuro = "NeuroscienceAndNeurology"
+    ortho = "OrthopedicSurgery"
+    orl = "Otorhinolaryngology"
+    plastic = "PlasticSurgery"
+    psychiatry = "PsychiatryAndPsychology"
+    pulmonology = "Pulmonology"
+
+    @classmethod
+    def values(cls) -> list[str]:
+        return sorted(cls._value2member_map_.keys())
+
+
+class HeMtebLoader:
+    def _load_corpus(self, split: str, cache_dir: str | None = None):
+        ## NOTE: This is a cross-lingual dataset, so the corpus does not depend on the language
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
-            name=f"{language}-corpus",
+            name=f"{split}-corpus",
             revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
@@ -28,10 +59,10 @@ class HeMtebTask:
         }
         return corpus
 
-    def _load_queries(self, language: str, cache_dir: str | None = None):
+    def _load_queries(self, split: str, language: str, cache_dir: str | None = None):
         queries_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
-            name=f"{language}-queries",
+            name=f"{split}-{language}-queries",
             revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
@@ -44,7 +75,7 @@ class HeMtebTask:
         queries = {query["id"]: query["text"] for query in queries_ds}
         return queries
 
-    def _load_qrels(self, language: str, split: str, cache_dir: str | None = None):
+    def _load_qrels(self, split: str, language: str, cache_dir: str | None = None):
         qrels_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             name=f"{language}-qrels",
@@ -70,9 +101,11 @@ class HeMtebTask:
     def load_data(self, **kwargs):
         if self.data_loaded:
             return
+
         eval_splits = self.metadata_dict["eval_splits"]
         languages = self.metadata.eval_langs
         cache_dir = kwargs.get("cache_dir", None)
+
         self.corpus = {
             language: {split: None for split in eval_splits} for language in languages
         }
@@ -82,15 +115,47 @@ class HeMtebTask:
         self.relevant_docs = {
             language: {split: None for split in eval_splits} for language in languages
         }
+
         for language in languages:
             for split in eval_splits:
                 self.corpus[language][split] = self._load_corpus(
-                    language=language, cache_dir=cache_dir
+                    split=split, cache_dir=cache_dir
                 )
                 self.queries[language][split] = self._load_queries(
-                    language=language, cache_dir=cache_dir
+                    split=split, language=language, cache_dir=cache_dir
                 )
                 self.relevant_docs[language][split] = self._load_qrels(
-                    language=language, split=split, cache_dir=cache_dir
+                    split=split, language=language, cache_dir=cache_dir
                 )
+
         self.data_loaded = True
+
+
+class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
+    metadata = TaskMetadata(
+        dataset={
+            "path": "clinia/hemteb-v1",
+            "revision": "9a456f6e67a97bd3202b26b3cad302cc4349b4fe",
+        },
+        name="HeMtebRetrieval",
+        description="",
+        type="Retrieval",
+        modalities=["text"],
+        category="s2p",
+        reference=None,
+        eval_splits=HeMtebSplits.values,
+        eval_langs=_LANGUAGES,
+        main_score="ndcg_at_10",
+        date=None,
+        domains=["Medical", "Academic"],
+        task_subtypes=None,
+        license=None,
+        annotations_creators="expert-annotated",
+        dialect=None,
+        sample_creation=None,
+        bibtex_citation=None,
+        descriptive_stats={},
+    )
+
+    def load_data(self, **kwargs):
+        HeMtebLoader.load_data(self, **kwargs)
