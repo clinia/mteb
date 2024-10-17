@@ -19,16 +19,16 @@ _LANGUAGES = {
 
 class HeMtebSplits(str, Enum):
     all = "all"
-    dentistry = "DentistryAndOralHealth"
+    dentistry_and_oral_health = "Dentistry and Oral Health"
     dermatology = "Dermatology"
     gastroenterology = "Gastroenterology"
     genetics = "Genetics"
-    neuro = "NeuroscienceAndNeurology"
-    ortho = "OrthopedicSurgery"
-    orl = "Otorhinolaryngology"
-    plastic = "PlasticSurgery"
-    psychiatry = "PsychiatryAndPsychology"
+    neuroscience_and_neurology = "Neuroscience and Neurology"
+    orthopedic_surgery = "Orthopedic Surgery"
+    otorhinolaryngology = "Otorhinolaryngology"
+    plastic_surgery = "Plastic Surgery"
     pulmonology = "Pulmonology"
+    psychiatry_and_psychology = "Pyschiatry and Pyschology"
 
     @classmethod
     def values(cls) -> list[str]:
