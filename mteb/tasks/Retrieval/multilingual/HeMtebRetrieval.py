@@ -57,7 +57,116 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         dialect=None,
         sample_creation=None,
         bibtex_citation=None,
-        descriptive_stats={},
+        descriptive_stats={
+            "n_samples": {
+                "Dentistry and Oral Health": 200,
+                "Dermatology": 200,
+                "Gastroenterology": 200,
+                "Genetics": 200,
+                "Neuroscience and Neurology": 200,
+                "Orthopedic Surgery": 200,
+                "Otorhinolaryngology": 200,
+                "Plastic Surgery": 200,
+                "Pulmonology": 200,
+                "Psychiatry and Psychology": 200,
+            },
+            "avg_character_length": {
+                "dev": {
+                    "num_documents": 123979,
+                    "average_document_length": 328750.045,
+                    "Dentistry and Oral Health": {
+                        "average_query_length": {
+                            "en-en": 75.89,
+                            "es-en": 90.42,
+                            "fr-en": 97.13,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Dermatology": {
+                        "average_query_length": {
+                            "en-en": 59.32,
+                            "es-en": 67.11,
+                            "fr-en": 72.73,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Gastroenterology": {
+                        "average_query_length": {
+                            "en-en": 81.03,
+                            "es-en": 92.59,
+                            "fr-en": 101.64,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Genetics": {
+                        "average_query_length": {
+                            "en-en": 72.26,
+                            "es-en": 83.14,
+                            "fr-en": 91.5,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Neuroscience and Neurology": {
+                        "average_query_length": {
+                            "en-en": 80.35,
+                            "es-en": 92.2,
+                            "fr-en": 111.0,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Orthopedic Surgery": {
+                        "average_query_length": {
+                            "en-en": 86.44,
+                            "es-en": 100.72,
+                            "fr-en": 107.89,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Otorhinolaryngology": {
+                        "average_query_length": {
+                            "en-en": 79.12,
+                            "es-en": 90.83,
+                            "fr-en": 98.45,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Plastic Surgery": {
+                        "average_query_length": {
+                            "en-en": 88.91,
+                            "es-en": 103.42,
+                            "fr-en": 112.95,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Pulmonology": {
+                        "average_query_length": {
+                            "en-en": 80.54,
+                            "es-en": 97.04,
+                            "fr-en": 102.73,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                    "Psychiatry and Psychology": {
+                        "average_query_length": {
+                            "en-en": 92.56,
+                            "es-en": 105.57,
+                            "fr-en": 114.17,
+                        },
+                        "num_queries": 200,
+                        "average_relevant_docs_per_query": 0,
+                    },
+                }
+            },
+        },
     )
 
     def _load_corpus(self, split: str, cache_dir: str | None = None):
