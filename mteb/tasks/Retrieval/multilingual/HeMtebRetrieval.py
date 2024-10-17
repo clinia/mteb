@@ -166,7 +166,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         ## NOTE: This is a cross-lingual dataset, so the corpus does not depend on the language
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
-            name=split,
             split="train",
             data_files="corpus.jsonl",
             revision=self.metadata_dict["dataset"]["revision"],
@@ -190,7 +189,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         queries_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
             data_files=f"{split}/queries-{language}.jsonl",
-            name=split,
             revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
@@ -206,7 +204,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
     def _load_qrels(self, split: str, cache_dir: str | None = None):
         qrels_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
-            name=split,
             data_files=f"{split}/qrels.jsonl",
             revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
