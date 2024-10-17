@@ -231,7 +231,7 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         if self.data_loaded:
             return
 
-        eval_splits = self.metadata_dict["eval_splits"]
+        eval_splits = kwargs.get("eval_splits")
         languages = self.metadata.eval_langs
         cache_dir = kwargs.get("cache_dir", None)
         self.corpus = {
