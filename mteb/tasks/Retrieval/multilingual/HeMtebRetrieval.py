@@ -99,7 +99,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 101.64,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Genetics": {
                         "average_query_length": {
@@ -108,7 +107,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 91.5,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Neuroscience and Neurology": {
                         "average_query_length": {
@@ -117,7 +115,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 111.0,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Orthopedic Surgery": {
                         "average_query_length": {
@@ -126,7 +123,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 107.89,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Otorhinolaryngology": {
                         "average_query_length": {
@@ -144,7 +140,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 112.95,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Pulmonology": {
                         "average_query_length": {
@@ -153,7 +148,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 102.73,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                     "Psychiatry and Psychology": {
                         "average_query_length": {
@@ -162,7 +156,6 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
                             "fr-en": 114.17,
                         },
                         "num_queries": 200,
-                        "average_relevant_docs_per_query": 0,
                     },
                 }
             },
