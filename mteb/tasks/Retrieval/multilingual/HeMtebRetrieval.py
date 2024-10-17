@@ -143,7 +143,7 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         modalities=["text"],
         category="s2p",
         reference=None,
-        eval_splits=HeMtebSplits.values,
+        eval_splits=HeMtebSplits.values(),
         eval_langs=_LANGUAGES,
         main_score="ndcg_at_10",
         date=None,
