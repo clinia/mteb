@@ -1,0 +1,44 @@
+name: launch_gpu_node
+
+num_nodes: 1
+resources:
+  cloud: aws
+  accelerators: A10G:1
+  region: ca-central-1
+  image_id: ami-0139f550217a23606
+  cpus: 4+
+  memory: 16+
+  disk_size: 64
+
+file_mounts:
+  /home/ubuntu/.gnupg.copy: /Users/<user-name>/.gnupg
+
+workdir: .
+
+setup : |
+  rm -rf /home/ubuntu/.gnupg && mv /home/ubuntu/.gnupg.copy /home/ubuntu/.gnupg
+  git config --global user.name "User Name"
+  git config --global user.email "user@email.com"
+  git config --global user.signingkey <key_signature>
+  git config --global commit.gpgsign true
+  echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+
+  curl https://pyenv.run | bash
+  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+  echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+  echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+  sudo apt update
+  sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+  . ~/.bashrc
+
+  pyenv install 3.11.8
+  pyenv global 3.11.8
+
+  sudo apt install -y git-lfs
+  git lfs install
+
+  curl -sSL https://install.python-poetry.org | python3 -
+  echo 'export PATH="/home/ubuntu/.local/bin:$PATH"' >> ~/.bashrc
+  . ~/.bashrc
+
+  poetry install --with dev,test
