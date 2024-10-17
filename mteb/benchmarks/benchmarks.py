@@ -240,6 +240,16 @@ MTEB_RETRIEVAL_LAW = Benchmark(
     citation=None,
 )
 
+MTEB_RETRIEVAL_MEDICAL = Benchmark(
+    name="MTEB (Medical)",
+    tasks=[
+        "HeMtebRetrieval",
+    ],
+    description="Medical benchmarks from MTEB",
+    reference="https://huggingface.co/collections/clinia/hemteb-66ba862805553c5186ad6c4e",
+    citation=None,
+)
+
 MTEB_MINERS_BITEXT_MINING = Benchmark(
     name="MINERSBitextMining",
     tasks=get_tasks(

@@ -6,6 +6,7 @@ from mteb.benchmarks.benchmarks import (
     MTEB_MAIN_EN,
     MTEB_MAIN_RU,
     MTEB_RETRIEVAL_LAW,
+    MTEB_RETRIEVAL_MEDICAL,
     MTEB_RETRIEVAL_WITH_INSTRUCTIONS,
     CoIR,
 )
@@ -24,6 +25,7 @@ __all__ = [
     "MTEB_MAIN_EN",
     "MTEB_MAIN_RU",
     "MTEB_RETRIEVAL_LAW",
+    "MTEB_RETRIEVAL_MEDICAL",
     "MTEB_RETRIEVAL_WITH_INSTRUCTIONS",
     "CoIR",
     "TASKS_REGISTRY",
