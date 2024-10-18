@@ -18,6 +18,7 @@ _LANGUAGES = {
 
 
 class HeMtebSplits(str, Enum):
+    all = "All"
     dentistry_and_oral_health = "Dentistry and Oral Health"
     dermatology = "Dermatology"
     gastroenterology = "Gastroenterology"
@@ -37,8 +38,8 @@ class HeMtebSplits(str, Enum):
 class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
     metadata = TaskMetadata(
         dataset={
-            "path": "clinia/hemteb-v1",
-            "revision": "1940d955b2d292e3f240a341b08f02b176f54731",
+            "path": "clinia/CURE-v1",
+            "revision": "c879d98bc4c09e0ceb76b6713089dda8c7e113fd",
         },
         name="HeMtebRetrieval",
         description="",
@@ -166,11 +167,11 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         ## NOTE: This is a cross-lingual dataset, so the corpus does not depend on the language
         corpus_ds = load_dataset(
             path=self.metadata_dict["dataset"]["path"],
-            split="train",
-            data_files="corpus.jsonl",
+            data_files=f"{split}/corpus.jsonl",
             revision=self.metadata_dict["dataset"]["revision"],
             cache_dir=cache_dir,
         )
+        corpus_ds = next(iter(corpus_ds.values()))
         corpus_ds = corpus_ds.cast_column("_id", Value("string"))
         corpus_ds = corpus_ds.rename_column("_id", "id")
         corpus_ds = corpus_ds.remove_columns(
@@ -228,7 +229,7 @@ class HeMtebRetrieval(MultilingualTask, AbsTaskRetrieval):
         if self.data_loaded:
             return
 
-        eval_splits = kwargs.get("eval_splits")
+        eval_splits = kwargs.get("eval_splits", self.metadata.eval_splits)
         languages = self.metadata.eval_langs
         cache_dir = kwargs.get("cache_dir", None)
         self.corpus = {
