@@ -10,6 +10,28 @@ from mteb.model_meta import ModelMeta
 
 from .wrapper import Wrapper
 
+EVALUATED_LANGUAGES = [
+    "arb_Arab",
+    "ben_Beng",
+    "eng_Latn",
+    "spa_Latn",
+    "deu_Latn",
+    "pes_Arab",
+    "fin_Latn",
+    "fra_Latn",
+    "hin_Deva",
+    "ind_Latn",
+    "jpn_Jpan",
+    "kor_Hang",
+    "rus_Cyrl",
+    "swh_Latn",
+    "tel_Telu",
+    "tha_Thai",
+    "yor_Latn",
+    "zho_Hant",
+    "zho_Hans",
+]
+
 
 class GoogleTextEmbeddingModel(Encoder, Wrapper):
     def __init__(
@@ -55,6 +77,7 @@ class GoogleTextEmbeddingModel(Encoder, Wrapper):
                 TextEmbeddingInput(text, task_type=google_task_type) for text in texts
             ]
         kwargs = {"output_dimensionality": dimensionality} if dimensionality else {}
+
         try:
             embeddings = model.get_embeddings(inputs, **kwargs)
         # Except the very rare google.api_core.exceptions.InternalServerError
@@ -92,6 +115,35 @@ google_emb_004 = ModelMeta(
     ),
     name=name,
     languages=["eng-Latn"],
+    open_weights=False,
+    revision="1",  # revision is intended for implementation
+    release_date=None,  # couldnt figure this out
+    n_parameters=None,
+    memory_usage=None,
+    max_tokens=2048,
+    embed_dim=768,
+    license=None,
+    similarity_fn_name="cosine",  # assumed
+    framework=["API"],
+    use_instructions=True,
+)
+
+name = "text-multilingual-embedding-002"
+google_multilingual_emb_002 = ModelMeta(
+    loader=partial(
+        GoogleTextEmbeddingModel,
+        model_name=name,
+        model_prompts={
+            "Classification": "CLASSIFICATION",
+            "MultilabelClassification": "CLASSIFICATION",
+            "Clustering": "CLUSTERING",
+            "STS": "SIMILARITY",
+            PromptType.query.value: "RETRIEVAL_QUERY",
+            PromptType.passage.value: "RETRIEVAL_DOCUMENT",
+        },
+    ),
+    name=name,
+    languages=EVALUATED_LANGUAGES,  # From the list of evaluated languages in https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/text-embeddings-api#supported_text_languages
     open_weights=False,
     revision="1",  # revision is intended for implementation
     release_date=None,  # couldnt figure this out
