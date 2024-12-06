@@ -25,6 +25,7 @@ FRAMEWORKS = Literal[
     "TensorFlow",
     "API",
     "Tevatron",
+    "NumPy",
 ]
 DISTANCE_METRICS = Literal["cosine"]
 
@@ -74,6 +75,8 @@ class ModelMeta(BaseModel):
             input such as "query: {document}" or "passage: {document}".
         zero_shot_benchmarks: A list of benchmarks on which the model has been evaluated in a zero-shot setting. By default we assume that all models
             are evaluated non-zero-shot unless specified otherwise.
+        adapted_from: Name of the model from which this model is adapted from. For quantizations, fine-tunes, long doc extensions, etc.
+        superseded_by: Name of the model that supersedes this model, e.g. nvidia/NV-Embed-v2 supersedes v1.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -85,7 +88,7 @@ class ModelMeta(BaseModel):
     loader: Callable[..., Encoder] | None = None
     n_parameters: int | None = None
     memory_usage: float | None = None
-    max_tokens: int | None = None
+    max_tokens: float | None = None
     embed_dim: int | None = None
     license: str | None = None
     open_weights: bool | None = None
@@ -96,6 +99,8 @@ class ModelMeta(BaseModel):
     similarity_fn_name: DISTANCE_METRICS | None = None
     use_instructions: bool | None = None
     zero_shot_benchmarks: list[str] | None = None
+    adapted_from: str | None = None
+    superseded_by: str | None = None
 
     def to_dict(self):
         dict_repr = self.model_dump()

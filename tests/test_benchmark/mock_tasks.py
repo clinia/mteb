@@ -16,6 +16,7 @@ from mteb.abstasks.AbsTaskMultilabelClassification import (
 from mteb.abstasks.AbsTaskPairClassification import AbsTaskPairClassification
 from mteb.abstasks.AbsTaskReranking import AbsTaskReranking
 from mteb.abstasks.AbsTaskRetrieval import AbsTaskRetrieval
+from mteb.abstasks.AbsTaskSpeedTask import AbsTaskSpeedTask
 from mteb.abstasks.AbsTaskSTS import AbsTaskSTS
 from mteb.abstasks.AbsTaskSummarization import AbsTaskSummarization
 from mteb.abstasks.TaskMetadata import TaskMetadata
@@ -45,6 +46,24 @@ multilingual_eval_langs = {
     "eng": ["eng-Latn"],
     "fra": ["fra-Latn"],
 }
+
+
+class MockSpeedTask(AbsTaskSpeedTask):
+    metadata = TaskMetadata(
+        type="Speed",
+        name="MockSpeedTask",
+        main_score="avg_words_per_sec",
+        descriptive_stats={
+            "test": None,
+        },
+        **general_args,  # type: ignore
+    )
+
+    def load_data(self, **kwargs):
+        texts = ["This is a test sentence", "This is another test sentence"]
+
+        self.dataset = {"test": {"text": texts}}
+        self.data_loaded = True
 
 
 class MockClassificationTask(AbsTaskClassification):
@@ -1284,14 +1303,32 @@ class MockRetrievalTask(AbsTaskRetrieval):
             "average_relevant_docs_per_query": 2.0,
             "max_relevant_docs_per_query": 2,
             "unique_relevant_docs": 2,
-        }
+        },
+        "val": {
+            "number_of_characters": 112,
+            "num_samples": 4,
+            "num_queries": 2,
+            "num_documents": 2,
+            "min_document_length": 23,
+            "average_document_length": 26.0,
+            "max_document_length": 29,
+            "unique_documents": 2,
+            "min_query_length": 27,
+            "average_query_length": 30.0,
+            "max_query_length": 33,
+            "unique_queries": 2,
+            "min_relevant_docs_per_query": 2,
+            "average_relevant_docs_per_query": 2.0,
+            "max_relevant_docs_per_query": 2,
+            "unique_relevant_docs": 2,
+        },
     }
 
     metadata = TaskMetadata(
         type="Retrieval",
         name="MockRetrievalTask",
         main_score="ndcg_at_10",
-        **general_args,  # type: ignore
+        **dict(general_args | {"eval_splits": ["val", "test"]}),  # type: ignore
     )
 
     def load_data(self, **kwargs):
@@ -1299,17 +1336,29 @@ class MockRetrievalTask(AbsTaskRetrieval):
             "test": {
                 "q1": "This is a test sentence",
                 "q2": "This is another test sentence",
-            }
+            },
+            "val": {
+                "q1": "This is a test sentence",
+                "q2": "This is another test sentence",
+            },
         }
         self.corpus = {
             "test": {
                 "d1": "This is a positive sentence",
                 "d2": "This is another positive sentence",
-            }
+            },
+            "val": {
+                "d1": "This is a positive sentence",
+                "d2": "This is another positive sentence",
+            },
         }
 
         self.relevant_docs = {
             "test": {
+                "q1": {"d1": 1, "d2": 0},
+                "q2": {"d1": 0, "d2": 1},
+            },
+            "val": {
                 "q1": {"d1": 1, "d2": 0},
                 "q2": {"d1": 0, "d2": 1},
             },
