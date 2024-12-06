@@ -5,6 +5,7 @@ from functools import partial
 from typing import Any
 
 import numpy as np
+import tqdm
 
 from mteb.model_meta import ModelMeta
 from mteb.requires_package import requires_package
@@ -68,9 +69,15 @@ class OpenAIWrapper(Wrapper):
             for i in range(0, len(trimmed_sentences), max_batch_size)
         ]
 
+        show_progress_bar = (
+            False
+            if "show_progress_bar" not in kwargs
+            else kwargs.pop("show_progress_bar")
+        )
+
         all_embeddings = []
 
-        for sublist in sublists:
+        for sublist in tqdm.tqdm(sublists, leave=False, disable=not show_progress_bar):
             try:
                 response = self._client.embeddings.create(
                     input=sublist,
@@ -132,7 +139,7 @@ text_embedding_3_small = ModelMeta(
     use_instructions=False,
 )
 text_embedding_3_small_768 = ModelMeta(
-    name="text-embedding-3-small-768",
+    name="openai/text-embedding-3-small-768",
     revision="1",
     release_date="2024-01-25",
     languages=None,  # supported languages not specified
@@ -176,7 +183,7 @@ text_embedding_3_large = ModelMeta(
     memory_usage=None,
 )
 text_embedding_3_large_768 = ModelMeta(
-    name="text-embedding-3-large-768",
+    name="openai/text-embedding-3-large-768",
     revision="1",
     release_date="2024-01-25",
     languages=None,  # supported languages not specified

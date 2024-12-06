@@ -4,6 +4,7 @@ from functools import partial
 from typing import Any
 
 import numpy as np
+import tqdm
 
 from mteb.encoder_interface import Encoder, PromptType
 from mteb.model_meta import ModelMeta
@@ -49,7 +50,8 @@ class GoogleTextEmbeddingModel(Encoder, Wrapper):
     def _embed(
         self,
         texts: list[str],
-        google_task_type: str | None = None,
+        google_task_type: str,
+        show_progress_bar: bool,
         titles: list[str] | None = None,
         dimensionality: int | None = 768,
     ) -> list[list[float]]:
@@ -76,15 +78,28 @@ class GoogleTextEmbeddingModel(Encoder, Wrapper):
             inputs = [
                 TextEmbeddingInput(text, task_type=google_task_type) for text in texts
             ]
+
         kwargs = {"output_dimensionality": dimensionality} if dimensionality else {}
 
-        try:
-            embeddings = model.get_embeddings(inputs, **kwargs)
-        # Except the very rare google.api_core.exceptions.InternalServerError
-        except Exception as e:
-            print("Retrying once after error:", e)
-            embeddings = model.get_embeddings(inputs, **kwargs)
-        return np.asarray([embedding.values for embedding in embeddings])
+        max_batch_size = 16  ## Vertex API limits the number of instances per call to 250, but there is also a limit of tokens involved. Let's be conservative and set it to 16 by default. TODO: in a future PR, leverage the CountTokens API to get the optimum batch size for each request.
+        batches = [
+            inputs[i : i + max_batch_size]
+            for i in range(0, len(inputs), max_batch_size)
+        ]
+
+        all_embeddings = []
+
+        for batch in tqdm.tqdm(batches, leave=False, disable=not show_progress_bar):
+            try:
+                embeddings_batch = model.get_embeddings(batch, **kwargs)
+            # Except the very rare google.api_core.exceptions.InternalServerError
+            except Exception as e:
+                print("Retrying once after error:", e)
+                embeddings_batch = model.get_embeddings(batch, **kwargs)
+
+            all_embeddings.extend([embedding.values for embedding in embeddings_batch])
+
+        return np.asarray(all_embeddings)
 
     def encode(
         self,
@@ -93,17 +108,26 @@ class GoogleTextEmbeddingModel(Encoder, Wrapper):
         prompt_type: PromptType | None = None,
         **kwargs: Any,
     ) -> np.ndarray:
-        google_task_type = self.get_prompt_name(
-            self.model_prompts, task_name, prompt_type
+        prompt_name = self.get_prompt_name(self.model_prompts, task_name, prompt_type)
+        google_task_type = self.model_prompts.get(prompt_name)
+
+        show_progress_bar = (
+            False
+            if "show_progress_bar" not in kwargs
+            else kwargs.pop("show_progress_bar")
         )
-        return self._embed(sentences, google_task_type=google_task_type)
+
+        return self._embed(
+            sentences,
+            google_task_type=google_task_type,
+            show_progress_bar=show_progress_bar,
+        )
 
 
-name = "text-embedding-004"
 google_emb_004 = ModelMeta(
     loader=partial(
         GoogleTextEmbeddingModel,
-        model_name=name,
+        model_name="text-embedding-004",
         model_prompts={
             "Classification": "CLASSIFICATION",
             "MultilabelClassification": "CLASSIFICATION",
@@ -113,7 +137,7 @@ google_emb_004 = ModelMeta(
             PromptType.passage.value: "RETRIEVAL_DOCUMENT",
         },
     ),
-    name=name,
+    name="google/text-embedding-004",
     languages=["eng-Latn"],
     open_weights=False,
     revision="1",  # revision is intended for implementation
@@ -128,11 +152,10 @@ google_emb_004 = ModelMeta(
     use_instructions=True,
 )
 
-name = "text-embedding-005"
 google_emb_005 = ModelMeta(
     loader=partial(
         GoogleTextEmbeddingModel,
-        model_name=name,
+        model_name="text-embedding-005",
         model_prompts={
             "Classification": "CLASSIFICATION",
             "MultilabelClassification": "CLASSIFICATION",
@@ -142,7 +165,7 @@ google_emb_005 = ModelMeta(
             PromptType.passage.value: "RETRIEVAL_DOCUMENT",
         },
     ),
-    name=name,
+    name="google/text-embedding-005",
     languages=["eng-Latn"],
     open_weights=False,
     revision="1",  # revision is intended for implementation
@@ -157,11 +180,10 @@ google_emb_005 = ModelMeta(
     use_instructions=True,
 )
 
-name = "text-multilingual-embedding-002"
 google_multilingual_emb_002 = ModelMeta(
     loader=partial(
         GoogleTextEmbeddingModel,
-        model_name=name,
+        model_name="text-multilingual-embedding-002",
         model_prompts={
             "Classification": "CLASSIFICATION",
             "MultilabelClassification": "CLASSIFICATION",
@@ -171,7 +193,7 @@ google_multilingual_emb_002 = ModelMeta(
             PromptType.passage.value: "RETRIEVAL_DOCUMENT",
         },
     ),
-    name=name,
+    name="google/text-multilingual-embedding-002",
     languages=EVALUATED_LANGUAGES,  # From the list of evaluated languages in https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/text-embeddings-api#supported_text_languages
     open_weights=False,
     revision="1",  # revision is intended for implementation
